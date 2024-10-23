@@ -60,14 +60,6 @@ This project is designed to decrypt cookies stored by the Microsoft Edge browser
 - **writeCookiesToJson**: Writes the decrypted cookies to a JSON file.
 - **readAndDecryptCookies**: Reads and decrypts cookies from the SQLite database.
 
-### `shell.c`
-
-- **fiddle_interrupt**: Interrupts the SQLite database operation.
-- **fiddle_db_filename**: Retrieves the filename of the database.
-- **fiddle_reset_db**: Resets the database.
-- **fiddle_export_db**: Exports the database contents.
-- **fiddle_exec**: Executes SQL commands.
-
 ## License
 
 This project is licensed under the MIT License. See the `LICENSE` file for details.
