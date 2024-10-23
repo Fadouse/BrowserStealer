@@ -1,4 +1,4 @@
-# Edge Browser Cookie Decryptor
+# Browser Cookie Decryptor
 
 This project is designed to decrypt cookies stored by the Microsoft Edge browser. It retrieves the encrypted AES key from the `Local State` file, decrypts it using Windows DPAPI, and then uses the decrypted AES key to decrypt the cookies stored in the Edge browser's SQLite database.
 
