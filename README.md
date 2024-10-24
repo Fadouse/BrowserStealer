@@ -43,6 +43,27 @@ This project is designed to decrypt cookies stored by the Microsoft Edge browser
 
 3. The program will output the decrypted cookies to a file named `cookies.json`.
 
+## Execution Flow
+
+1. **Terminate Edge Process**: 
+   - The program begins by attempting to terminate the Edge browser process using the `KillProcessByName` function. This ensures that the SQLite database containing the cookies is not locked, allowing for read access.
+
+2. **Retrieve Encrypted AES Key**:
+   - The program then calls `getEncryptedAESKey` to retrieve the encrypted AES key from the Edge browser's `Local State` file. The key is base64-encoded, so it is decoded using `base64Decode`.
+
+3. **Decrypt AES Key**:
+   - Once the AES key is decoded, it is decrypted using the Windows DPAPI (`CryptUnprotectData`) through the `decryptAESKey` function. This decrypted AES key is then used to decrypt the cookies.
+
+4. **Locate Edge Browser Cookie Database**:
+   - The program constructs the path to the SQLite database that stores the cookies via the `getEdgeBrowserCookiePath` function.
+
+5. **Decrypt Cookies**:
+   - Using the decrypted AES key, the program reads and decrypts the cookies stored in the SQLite database. The `readAndDecryptCookies` function handles the decryption process, and the `decryptData` function determines the encryption method (AES-GCM or DPAPI) and decrypts the cookie values.
+
+6. **Output to JSON**:
+   - Finally, the decrypted cookies are written to a JSON file named `cookies.json` using the `writeCookiesToJson` function, providing a structured output of the cookies' names, values, domains, paths, creation times, and expiration times.
+
+
 ## Code Overview
 
 ### `main.cpp`
